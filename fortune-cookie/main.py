@@ -23,9 +23,10 @@ def getRandomFortune():
     "Consider eating more fortune cookies",
     "You have tamed the mighty python, now you must free it onto the spider's web"
     ]
+
     index = random.randint(0, 2)
 
-    return fortunes(index)
+    return fortunes[index]
 
 class MainHandler(webapp2.RequestHandler):
     def get(self):
@@ -41,17 +42,13 @@ class MainHandler(webapp2.RequestHandler):
 
         cookie_again_button = "<a href='.'><button>Another cookie plz!</button></a>"
 
-        content = header + number_paragraph + fortune_paragraph
+        content = header + number_paragraph + fortune_paragraph + cookie_again_button
         self.response.write(content)
 
 class LoginHandler(webapp2.RequestHandler):
     def get(self):
         self.response.write("Thanks for trying to log in!")
 
-routes = [
-    ('/'. MainHandler),
-    ('/login', LoginHandler)
-]
 
 app = webapp2.WSGIApplication([
     ('/', MainHandler)
